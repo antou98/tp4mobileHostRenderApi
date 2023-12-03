@@ -140,7 +140,11 @@ app.get("/test",(req,res)=>{
 app.post("/createCommande",(req,res)=>{
 
     const today = new Date();
-    const dateNow = today.getFullYear()+"-"+today.getMonth()+"-"+today.getDay();
+    let todayDay = today.getDay();
+    if(today.getDay()<=0){
+        todayDay = today.getDay()+1;
+    }
+    const dateNow = today.getFullYear()+"-"+today.getMonth()+"-"+todayDay;
     var requeteCreateCommande = "INSERT INTO tp4_mobile.commande (date_commande,id_user) VALUES ("+"\'"+dateNow+"\'"+", ?)"
 
     console.log(req.body)
